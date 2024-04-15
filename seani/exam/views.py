@@ -34,6 +34,8 @@ def question(request, m_id, q_id = 1):
                         'q_id': q_id,
                         })
     except IndexError:
+        exam.compute_score_by_module(m_id)
+        exam.compute_score()
         return redirect('exam:home')
 
 @login_required
