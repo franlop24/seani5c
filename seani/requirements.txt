@@ -1,0 +1,4 @@
+django
+cloudinary
+python-dotenv
+pymysql
