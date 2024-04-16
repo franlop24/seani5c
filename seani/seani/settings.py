@@ -1,5 +1,6 @@
 from pathlib import Path
 import os 
+import dj_database_url
 
 import cloudinary
 import cloudinary.uploader
@@ -75,15 +76,21 @@ WSGI_APPLICATION = 'seani.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'seani5c',
+#         'USER': 'root',
+#         'PASSWORD': 'example',
+#         'HOST': 'localhost',
+#         'PORT': '3306'
+#     }
+# }
+
+DATABASE_URL = str(os.environ.get('DATABASE_URL'))
+# Replace the SQLite DATABASES configuration with PostgreSQL:
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'seani5c',
-        'USER': 'root',
-        'PASSWORD': 'example',
-        'HOST': 'localhost',
-        'PORT': '3306'
-    }
+    'default': dj_database_url.config(default=DATABASE_URL, conn_max_age=600)
 }
 
 
