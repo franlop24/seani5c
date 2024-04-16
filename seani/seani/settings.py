@@ -1,6 +1,8 @@
 from pathlib import Path
 import os 
 
+import dj_database_url
+
 import cloudinary
 import cloudinary.uploader
 import cloudinary.api
@@ -75,17 +77,19 @@ WSGI_APPLICATION = 'seani.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'seani5c',
-        'USER': 'root',
-        'PASSWORD': 'example',
-        'HOST': 'localhost',
-        'PORT': '3306'
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'seani5c',
+#         'USER': 'seani',
+#         'PASSWORD': 'example',
+#         'HOST': 'localhost',
+#         'PORT': '3306'
+#     }
+# }
 
+DATABASE_URL = str(os.environ.get('DATABASE_URL'))
+DATABASES = {'default': dj_database_url.parse(DATABASE_URL)}
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
